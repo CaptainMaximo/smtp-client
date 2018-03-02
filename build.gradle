@@ -1,5 +1,5 @@
-group 'solutions.rieder'
-version '1.0'
+group 'com.github.captainmaximo'
+version '0.1'
 
 apply plugin: 'java'
 

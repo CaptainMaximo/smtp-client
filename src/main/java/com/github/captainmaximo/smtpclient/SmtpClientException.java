@@ -1,4 +1,4 @@
-package solutions.rieder.smtpclient;
+package com.github.captainmaximo.smtpclient;
 
 /**
  *

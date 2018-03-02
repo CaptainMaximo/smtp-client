@@ -1,4 +1,4 @@
-package solutions.rieder.smtpclient;
+package com.github.captainmaximo.smtpclient;
 
 import java.util.ArrayList;
 import java.util.List;
