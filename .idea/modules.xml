@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/smtp-client.iml" filepath="$PROJECT_DIR$/smtp-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/smtp-client_main.iml" filepath="$PROJECT_DIR$/.idea/modules/smtp-client_main.iml" group="smtp-client" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/smtp-client_test.iml" filepath="$PROJECT_DIR$/.idea/modules/smtp-client_test.iml" group="smtp-client" />
+    </modules>
+  </component>
+</project>

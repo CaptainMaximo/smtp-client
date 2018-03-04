@@ -1,7 +1,10 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
 group 'com.github.captainmaximo'
 version '0.1'
-
-apply plugin: 'java'
+archivesBaseName = "smtp-client"
 
 sourceCompatibility = 1.8
 
@@ -9,7 +12,71 @@ repositories {
     mavenCentral()
 }
 
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'SMTP Client'
+                packaging 'jar'
+                // optionally artifactId can be defined here
+                description 'A very simple Java SMTP email client depending on javax.mail and com.sun.mail.'
+                url 'https://github.com/CaptainMaximo/smtp-client'
+
+                scm {
+                    connection 'scm:git:git://github.com/CaptainMaximo/smtp-client.git'
+                    developerConnection 'scm:git:git://github.com/CaptainMaximo/smtp-client.git'
+                    url 'https://github.com/CaptainMaximo/smtp-client/tree/master'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'CaptainMaximo'
+                        name 'Max Rieder'
+                        email 'max.rieder@zoho.eu'
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 dependencies {
     compile group: 'javax.mail', name: 'javax.mail-api', version: '1.6.0'
     compile group: 'com.sun.mail', name: 'javax.mail', version: '1.6.0'
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
 }
